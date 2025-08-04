@@ -1,11 +1,13 @@
 package de.exxcellent.challenge;
 import org.junit.jupiter.api.Test;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class CSVReaderTest {
@@ -47,6 +49,74 @@ public class CSVReaderTest {
             assertEquals(1, actual.length);
             assertArrayEquals(expected[0], actual[0]);
         }
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void transformCSVToArrayTest_nullFile() {
+        try{
+            String[][] actual = CSVReader.transformCSVToArray(null);
+            fail();
+        }
+        catch (IllegalArgumentException e)
+        {
+            assertTrue(true);
+        }
+
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void transformCSVToArrayTest_emptyFileName() {
+        try{
+            String[][] actual = CSVReader.transformCSVToArray("");
+            fail();
+        }
+        catch (IllegalArgumentException e)
+        {
+            assertTrue(true);
+        }
+
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void transformCSVToArrayTest_whitespaceFileName() {
+        try{
+            String[][] actual = CSVReader.transformCSVToArray("   ");
+            fail();
+        }
+        catch (IllegalArgumentException e)
+        {
+            assertTrue(true);
+        }
+
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void transformCSVToArrayTest_fileDoesNotExist() {
+        try{
+            String[][] actual = CSVReader.transformCSVToArray("thisFileDoesNotExist.csv");
+            fail();
+        }
+        catch (FileNotFoundException e)
+        {
+            assertTrue(true);
+        }
+
         catch (IOException e){
             System.err.println(e.getMessage());
             fail();
