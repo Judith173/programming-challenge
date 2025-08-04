@@ -28,8 +28,8 @@ public final class App {
             }
             System.out.println();
         }
-        SmallestTemperatureSpreadDeterminer stsd = new SmallestTemperatureSpreadDeterminer("weather.csv", "Day", "MnT", "MxT");
-        ArrayList<String> smallestTempSpread = stsd.findTargetWithSmallestTempSpread();
+        CSVMinDistTargetsFinder c = new CSVMinDistTargetsFinder("weather.csv", "Day", "MnT", "MxT");
+        List<String> smallestTempSpread = c.findTargetsWithMinDistance();
         for (String element: smallestTempSpread){
             System.out.println(element);
         }
