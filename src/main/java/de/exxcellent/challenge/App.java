@@ -3,6 +3,7 @@ import de.exxcellent.challenge.CSVReader;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -27,6 +28,12 @@ public final class App {
             }
             System.out.println();
         }
+        SmallestTemperatureSpreadDeterminer stsd = new SmallestTemperatureSpreadDeterminer("weather.csv", "Day", "MnT", "MxT");
+        ArrayList<String> smallestTempSpread = stsd.findTargetWithSmallestTempSpread();
+        for (String element: smallestTempSpread){
+            System.out.println(element);
+        }
+
         }
         catch (IOException e){
             System.err.println(e.getMessage());
