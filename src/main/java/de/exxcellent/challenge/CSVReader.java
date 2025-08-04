@@ -10,6 +10,11 @@ import java.util.List;
 
 public class CSVReader {
     public static String[][] transformCSVToArray(String file) throws IOException{
+
+        if (file == null || file.trim().isEmpty()) {
+            throw new IllegalArgumentException("Filename must not be null or empty.");
+        }
+
         List<String[]> rows = new ArrayList<>();
 
         try (InputStream is = CSVReader.class.getResourceAsStream(file)) {
@@ -27,7 +32,8 @@ public class CSVReader {
             }
         }
 
-        return toArray(rows);}}
+        return toArray(rows);}
+    }
 
     private static String[][] toArray(List<String[]> l){
         String[][] twoDimensionalArray = new String[l.size()][];
