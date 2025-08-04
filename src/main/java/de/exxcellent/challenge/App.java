@@ -18,37 +18,29 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
+        List<String> validArgs = List.of("--weather", "--football");
+        if (args.length != 2 || !validArgs.contains(args[0])){
+            System.err.printf("Two arguments expected: <'%s'|'%s'> <'csv-file-name'>", validArgs.get(0), validArgs.get(1));
+            System.exit(1);
+        }
 
-        try{
-        List<String[]> content = CSVReader.getFileContent("weather.csv");
+        String mode = args[0];
+        String fileName = args[1];
 
-        for (String[] line : content){
-            for (String element : line){
-                System.out.print(element + " ");
+        try {
+            if (mode.equals(validArgs.get(0)))
+            {
+                Weather weather = new Weather(fileName);
+                weather.printDaysWithMinTempSpread();
             }
-            System.out.println();
+            else if (mode.equals(validArgs.get(1))) {
+                Football football = new Football(fileName);
+                football.printTeamsWithSmallestGoalDifference();
+            }
         }
-        CSVMinDistTargetsFinder c = new CSVMinDistTargetsFinder("weather.csv", "Day", "MnT", "MxT");
-        List<String> smallestTempSpread = c.findTargetsWithMinDistance();
-        for (String element: smallestTempSpread){
-            System.out.println(element);
-        }
-
-        }
-        catch (IOException e){
+        catch (IOException e)
+        {
             System.err.println(e.getMessage());
         }
-
-
-
-
-
-        // Your preparation code …
-
-        String dayWithSmallestTempSpread = "Someday";     // Your day analysis function call …
-        System.out.printf("Day with smallest temperature spread : %s%n", dayWithSmallestTempSpread);
-
-        String teamWithSmallestGoalSpread = "A good team"; // Your goal analysis function call …
-        System.out.printf("Team with smallest goal spread       : %s%n", teamWithSmallestGoalSpread);
     }
 }

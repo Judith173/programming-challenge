@@ -28,10 +28,10 @@ public class Football {
         CSVMinDistTargetsFinder teamsFinder = new CSVMinDistTargetsFinder(csvFileName, teamCol, goalsCol, goalsAllowedCol);
         return teamsFinder.findTargetsWithMinDistance();
     }
-    
+
     public void printTeamsWithSmallestGoalDifference() throws IOException{
         List<String> teamsWithSmallestGoalDifference = findTeamWithSmallestGoalDifference();
-        System.out.printf("Team with smallest goal spread       : %s%n", String.join(", ", teamsWithSmallestGoalDifference));
+        System.out.printf("Team(s) with smallest goal spread       : %s%n", String.join(", ", teamsWithSmallestGoalDifference));
     }
 
 }
