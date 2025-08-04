@@ -9,9 +9,9 @@ import java.util.List;
 
 
 public class CSVReader {
-
     public static String[][] transformCSVToArray(String file) throws IOException{
         List<String[]> rows = new ArrayList<>();
+
         try (InputStream is = CSVReader.class.getResourceAsStream(file)) {
             if (is == null){
                 String message = String.format("File %s not found in %s", file, CSVReader.class.getResource(""));
