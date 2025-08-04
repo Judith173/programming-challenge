@@ -1,7 +1,6 @@
 package de.exxcellent.challenge;
 
 import java.io.IOException;
-import java.util.List;
 
 public class CSVTargetsWithMinDistFinder extends TargetsWithMinDistFinder<String[]>
 {
@@ -21,7 +20,8 @@ public class CSVTargetsWithMinDistFinder extends TargetsWithMinDistFinder<String
 
     @Override
     protected String[][] getData() throws IOException {
-        return CSVReader.transformCSVToArray(fileName);
+        //return CSVReader.getFileContent(fileName);
+        return new String[0][0];
     }
     @Override
     protected double getX(String[] row){

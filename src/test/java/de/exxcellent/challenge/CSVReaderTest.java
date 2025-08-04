@@ -3,6 +3,8 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -12,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CSVReaderTest {
     @Test
-    void transformCSVToArrayTest() {
+    void getFileContentTest() {
         try{
             String[][] expected ={{"col1", "col2"},{"1", "2"},{"3", "4"}, {"5", "6"}};
-            String[][] actual = CSVReader.transformCSVToArray("simpleTestCSV.csv");
+            List<String[]> actual = CSVReader.getFileContent("simpleTestCSV.csv");
 
-            assertEquals(expected.length, actual.length);
+            assertEquals(expected.length, actual.size());
             for (int i = 0; i < expected.length; i++)
             {
-                assertArrayEquals(expected[i], actual[i]);
+                assertArrayEquals(expected[i], actual.get(i));
             }
         }
         catch (IOException e){
@@ -32,8 +34,8 @@ public class CSVReaderTest {
     @Test
     void transformCSVToArrayTest_emptyCSV() {
         try{
-            String[][] actual = CSVReader.transformCSVToArray("emptyCSV.csv");
-            assertEquals(0, actual.length);
+            List<String[]> actual = CSVReader.getFileContent("emptyCSV.csv");
+            assertEquals(0, actual.size());
         }
         catch (IOException e){
             System.err.println(e.getMessage());
@@ -45,9 +47,9 @@ public class CSVReaderTest {
     void transformCSVToArrayTest_onlyHeaderCSV() {
         try{
             String[][] expected ={{"c1", "c2"}};
-            String[][] actual = CSVReader.transformCSVToArray("onlyHeaderCSV.csv");
-            assertEquals(1, actual.length);
-            assertArrayEquals(expected[0], actual[0]);
+            List<String[]> actual = CSVReader.getFileContent("onlyHeaderCSV.csv");
+            assertEquals(1, actual.size());
+            assertArrayEquals(expected[0], actual.get(0));
         }
         catch (IOException e){
             System.err.println(e.getMessage());
@@ -56,9 +58,9 @@ public class CSVReaderTest {
     }
 
     @Test
-    void transformCSVToArrayTest_nullFile() {
+    void getFileContentTest_nullFile() {
         try{
-            String[][] actual = CSVReader.transformCSVToArray(null);
+            List<String[]> actual = CSVReader.getFileContent(null);
             fail();
         }
         catch (IllegalArgumentException e)
@@ -73,9 +75,9 @@ public class CSVReaderTest {
     }
 
     @Test
-    void transformCSVToArrayTest_emptyFileName() {
+    void getFileContentTest_emptyFileName() {
         try{
-            String[][] actual = CSVReader.transformCSVToArray("");
+            CSVReader.getFileContent("");
             fail();
         }
         catch (IllegalArgumentException e)
@@ -90,9 +92,9 @@ public class CSVReaderTest {
     }
 
     @Test
-    void transformCSVToArrayTest_whitespaceFileName() {
+    void getFileContentTest_whitespaceFileName() {
         try{
-            String[][] actual = CSVReader.transformCSVToArray("   ");
+            CSVReader.getFileContent("   ");
             fail();
         }
         catch (IllegalArgumentException e)
@@ -107,9 +109,9 @@ public class CSVReaderTest {
     }
 
     @Test
-    void transformCSVToArrayTest_fileDoesNotExist() {
+    void getFileContentTest_fileDoesNotExist() {
         try{
-            String[][] actual = CSVReader.transformCSVToArray("thisFileDoesNotExist.csv");
+            CSVReader.getFileContent("thisFileDoesNotExist.csv");
             fail();
         }
         catch (FileNotFoundException e)

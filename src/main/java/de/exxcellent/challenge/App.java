@@ -1,9 +1,9 @@
 package de.exxcellent.challenge;
-import de.exxcellent.challenge.CSVReader;
 
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -20,7 +20,7 @@ public final class App {
     public static void main(String... args) {
 
         try{
-        String[][] content = CSVReader.transformCSVToArray("weather.csv");
+        List<String[]> content = CSVReader.getFileContent("weather.csv");
 
         for (String[] line : content){
             for (String element : line){

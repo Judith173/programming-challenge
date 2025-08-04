@@ -2,7 +2,7 @@ package de.exxcellent.challenge;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import de.exxcellent.challenge.CSVReader;
+import java.util.List;
 
 public class SmallestTemperatureSpreadDeterminer {
     String file;
@@ -20,19 +20,19 @@ public class SmallestTemperatureSpreadDeterminer {
     public ArrayList<String> findTargetWithSmallestTempSpread() throws IOException {
         ArrayList<String> targetsWithSmallestTempSpread = new ArrayList<>();
 
-        String[][] data = CSVReader.transformCSVToArray(file);
+        List<String[]> data = CSVReader.getFileContent(file);
         //TODO: handle empty data
         //TODO: handle CSV without header
         //TODO: handle index as headerCol
-        String[] header = data[0];
+        String[] header = data.get(0);
         int targetIndex = getIndexOfHeaderCol(targetCol, header);
         int minValueIndex = getIndexOfHeaderCol(minValueCol, header);
         int maxValueIndex = getIndexOfHeaderCol(maxValueCol, header);
 
         double minimalTempSpread = Double.POSITIVE_INFINITY;
 
-        for (int rowIndex = 1; rowIndex < data.length; rowIndex++){
-            String[] row = data[rowIndex];
+        for (int rowIndex = 1; rowIndex < data.size(); rowIndex++){
+            String[] row = data.get(rowIndex);
             //TODO: handle parseDouble fail
             double minValue = Double.parseDouble(row[minValueIndex]);
             double maxValue = Double.parseDouble(row[maxValueIndex]);
