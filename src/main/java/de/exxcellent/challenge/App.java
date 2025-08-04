@@ -1,4 +1,8 @@
 package de.exxcellent.challenge;
+import de.exxcellent.challenge.CSVReader;
+
+
+import java.io.IOException;
 
 /**
  * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
@@ -13,6 +17,24 @@ public final class App {
      * @param args The CLI arguments passed
      */
     public static void main(String... args) {
+
+        try{
+        String[][] content = CSVReader.transformCSVToArray("weather.csv");
+
+        for (String[] line : content){
+            for (String element : line){
+                System.out.print(element + " ");
+            }
+            System.out.println();
+        }
+        }
+        catch (IOException e){
+            System.err.println(e.getMessage());
+        }
+
+
+
+
 
         // Your preparation code …
 
