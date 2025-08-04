@@ -11,7 +11,7 @@ public abstract class TargetsWithMinDistFinder<T> {
         double minDist = Double.POSITIVE_INFINITY;
 
         //TODO: handle empty data
-        T[] data = getData();
+        List<T> data = getData();
         for (T element : data) {
             double dist = getDistance(element);
             if (dist < minDist) {
@@ -30,7 +30,7 @@ public abstract class TargetsWithMinDistFinder<T> {
         return Math.abs(getX(element) - getY(element));
     }
 
-    protected abstract T[] getData() throws IOException;
+    protected abstract List<T> getData() throws IOException;
 
     protected abstract double getX(T element);
 
