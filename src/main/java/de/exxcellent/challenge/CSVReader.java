@@ -1,4 +1,5 @@
 package de.exxcellent.challenge;
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -9,7 +10,7 @@ import java.util.List;
 
 
 public class CSVReader {
-    public static String[][] transformCSVToArray(String file) throws IOException{
+    public static String[][] transformCSVToArray(String file) throws IOException {
 
         if (file == null || file.trim().isEmpty()) {
             throw new IllegalArgumentException("Filename must not be null or empty.");
@@ -18,24 +19,23 @@ public class CSVReader {
         List<String[]> rows = new ArrayList<>();
 
         try (InputStream is = CSVReader.class.getResourceAsStream(file)) {
-            if (is == null){
+            if (is == null) {
                 String message = String.format("File %s not found in %s", file, CSVReader.class.getResource(""));
                 throw new FileNotFoundException(message);
             }
 
-        try (
-             BufferedReader br = new BufferedReader(new InputStreamReader(is)))
-        {
-            String row;
-            while ((row = br.readLine()) != null) {
-                rows.add(row.split(","));
+            try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
+                String row;
+                while ((row = br.readLine()) != null) {
+                    rows.add(row.split(","));
+                }
             }
-        }
 
-        return toArray(rows);}
+            return toArray(rows);
+        }
     }
 
-    private static String[][] toArray(List<String[]> l){
+    private static String[][] toArray(List<String[]> l) {
         String[][] twoDimensionalArray = new String[l.size()][];
 
         for (int i = 0; i < l.size(); i++) {
