@@ -51,7 +51,5 @@ public class CSVReaderTest {
             System.err.println(e.getMessage());
             fail();
         }
-
-
     }
 }
