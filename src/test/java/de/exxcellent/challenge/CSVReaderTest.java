@@ -26,4 +26,32 @@ public class CSVReaderTest {
             fail();
         }
     }
+
+    @Test
+    void transformCSVToArrayTest_emptyCSV() {
+        try{
+            String[][] actual = CSVReader.transformCSVToArray("emptyCSV.csv");
+            assertEquals(0, actual.length);
+        }
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void transformCSVToArrayTest_onlyHeaderCSV() {
+        try{
+            String[][] expected ={{"c1", "c2"}};
+            String[][] actual = CSVReader.transformCSVToArray("onlyHeaderCSV.csv");
+            assertEquals(1, actual.length);
+            assertArrayEquals(expected[0], actual[0]);
+        }
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+
+
+    }
 }
