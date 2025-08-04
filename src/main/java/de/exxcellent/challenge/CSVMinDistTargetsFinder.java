@@ -1,10 +1,9 @@
 package de.exxcellent.challenge;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
-public class CSVTargetsWithMinDistFinder extends TargetsWithMinDistFinder<String[]>
+public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
 {
     private final String fileName;
     private final String targetIdentifier;
@@ -14,7 +13,7 @@ public class CSVTargetsWithMinDistFinder extends TargetsWithMinDistFinder<String
     private int xIndex;
     private int yIndex;
 
-    public CSVTargetsWithMinDistFinder(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
+    public CSVMinDistTargetsFinder(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
     {
         //TODO: handle index instead of col_name as identifier
         this.fileName = fileName;

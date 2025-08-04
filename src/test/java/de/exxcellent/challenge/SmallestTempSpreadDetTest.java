@@ -1,9 +1,7 @@
 package de.exxcellent.challenge;
 import org.junit.jupiter.api.Test;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -15,7 +13,7 @@ public class SmallestTempSpreadDetTest {
 
     @Test
     public void findTargetWithSmallestTempSpreadTest(){
-        CSVTargetsWithMinDistFinder ctwmdf = new CSVTargetsWithMinDistFinder("weather.csv", "Day", "MnT", "MxT");
+        CSVMinDistTargetsFinder ctwmdf = new CSVMinDistTargetsFinder("weather.csv", "Day", "MnT", "MxT");
         //SmallestTemperatureSpreadDeterminer stsd = new SmallestTemperatureSpreadDeterminer("weather.csv", "Day", "MnT", "MxT");
         String expected = "14";
         try{

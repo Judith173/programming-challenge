@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class TargetsWithMinDistFinder<T> {
+public abstract class MinDistTargetsFinder<T> {
 
     public List<String> findTargetsWithMinDistance() throws IOException {
         List<String> targetsWithMinDist = new ArrayList<>();
