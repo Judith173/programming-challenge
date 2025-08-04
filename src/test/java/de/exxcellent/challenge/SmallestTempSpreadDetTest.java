@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
@@ -14,10 +15,11 @@ public class SmallestTempSpreadDetTest {
 
     @Test
     public void findTargetWithSmallestTempSpreadTest(){
-        SmallestTemperatureSpreadDeterminer stsd = new SmallestTemperatureSpreadDeterminer("weather.csv", "Day", "MnT", "MxT");
+        CSVTargetsWithMinDistFinder ctwmdf = new CSVTargetsWithMinDistFinder("weather.csv", "Day", "MnT", "MxT");
+        //SmallestTemperatureSpreadDeterminer stsd = new SmallestTemperatureSpreadDeterminer("weather.csv", "Day", "MnT", "MxT");
         String expected = "14";
         try{
-            ArrayList<String> smallestTempSpread = stsd.findTargetWithSmallestTempSpread();
+            List<String> smallestTempSpread = ctwmdf.findTargetsWithMinDistance();
             assertEquals(1, smallestTempSpread.size());
             assertEquals(expected, smallestTempSpread.get(0));
             }
