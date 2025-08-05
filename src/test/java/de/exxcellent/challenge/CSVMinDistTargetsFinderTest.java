@@ -51,6 +51,23 @@ public class CSVMinDistTargetsFinderTest {
     }
 
     @Test
+    public void findTargetsWithMinDist_targetAndIdentifiersAreSameCol(){
+        try {
+            String[] expected = {"1", "1", "5"};
+            String file = dirName + defaultFile;
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultXIdentifier, defaultXIdentifier, defaultXIdentifier);
+            List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
+            assertEquals(expected.length, actual_results.size());
+            assertArrayEquals(expected, actual_results.toArray());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
     public void findTargetsWithMinDist_XandYIdentifierAreInterchanged(){
         try {
             String file = dirName + defaultFile;
@@ -128,6 +145,22 @@ public class CSVMinDistTargetsFinderTest {
             List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
             assertEquals(expected.length, actual_results.size());
             assertArrayEquals(expected, actual_results.toArray());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    public void findTargetsWithMinDist_csvHasOneRow(){
+        try {
+            String file = dirName + "csv-with-one-row.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
+            assertEquals(1, actual_results.size());
+            assertEquals("a", actual_results.get(0));
         }
         catch (IOException e)
         {
