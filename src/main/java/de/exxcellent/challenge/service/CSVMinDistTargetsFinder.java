@@ -5,6 +5,9 @@ import de.exxcellent.challenge.exception.InvalidCSVFormatException;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * Identifies the target(s) with the minimum distance between their x- and y-value by using data read from a csv-file
+ */
 public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
 {
     private final String fileName;
@@ -15,6 +18,13 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     private int xIndex;
     private int yIndex;
 
+    /**
+     *
+     * @param fileName csv-file name
+     * @param targetIdentifier column header of target column
+     * @param xIdentifier column header of x-value-column
+     * @param yIdentifier column header of y-value-column
+     */
     public CSVMinDistTargetsFinder(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
     {
         this.fileName = fileName;
@@ -27,7 +37,12 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
         this.yIndex = -1;
     }
 
-
+    /**
+     * Reads a csv-file, validates it and returns its content (excluding the header)
+     * @return Content of csv-file (excluding header) as two-dimensional list
+     * @throws IOException if an error occurs while reading or validating the csv file
+     *      (for example if not all values of an x- or y-column are numeric)
+     */
     @Override
     protected List<String[]> getData() throws IOException {
         List<String[]> content =  CSVReader.getFileContent(fileName);
@@ -43,17 +58,34 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
         return content;
 
     }
+
+    /**
+     * Extracts the x-value from a specific row in the csv
+     * @param row of csv-file (represented by an array)
+     * @return x-value
+     */
     @Override
     protected double getX(String[] row){
         assert (xIndex >= 0 && xIndex < row.length);
         return Double.parseDouble(row[xIndex]);
     }
 
+    /**
+     * Extracts the y-value from a specific row in the csv
+     * @param row of csv-file (represented by an array)
+     * @return y-value
+     */
     @Override
     protected double getY(String[] row){
         assert (yIndex >=0 && yIndex < row.length);
         return Double.parseDouble(row[yIndex]);
     }
+
+    /**
+     * Extracts the target from a specific row in the csv
+     * @param row of csv-file (represented by an array)
+     * @return target
+     */
     @Override
     protected String getTarget(String[] row){
         assert (targetIndex >=0 && targetIndex < row.length);
