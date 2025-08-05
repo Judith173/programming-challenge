@@ -95,8 +95,19 @@ public class CSVMinDistTargetsFinderTest {
 
     @Test
     public void findTargetsWithMinDist_incorrectTargetCol(){
-        List<String> results = getResults(defaultFile, "thisColDoesNotExist", defaultXIdentifier, defaultYIdentifier);
+        runTestWithIllegalArgument(defaultFile, "thisColDoesNotExist", defaultXIdentifier, defaultYIdentifier);
     }
+
+    @Test
+    public void findTargetsWithMinDist_incorrectXIdentifier(){
+        runTestWithIllegalArgument(defaultFile, defaultTargetCol, "thisColDoesNotExist", defaultYIdentifier);
+    }
+
+    @Test
+    public void findTargetsWithMinDist_incorrectYIdentifier(){
+        runTestWithIllegalArgument(defaultFile, defaultTargetCol, defaultXIdentifier, "thisColDoesNotExist");
+    }
+
 
     private void runTest(String file, int expectedLength, String expectedResult)
     {
@@ -118,6 +129,18 @@ public class CSVMinDistTargetsFinderTest {
             fail();
         }
         return new ArrayList<>();
+    }
+
+    private void runTestWithIllegalArgument(String file, String targetId, String xId, String yID)
+    {
+        try {
+            getResults(file, targetId, xId, yID);
+            fail();
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.out.println(e.getMessage());
+        }
     }
 
 

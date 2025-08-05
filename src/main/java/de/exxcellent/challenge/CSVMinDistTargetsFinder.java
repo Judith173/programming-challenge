@@ -62,11 +62,14 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
 
     private void updateIndexes(String[] header){
-        //TODO: handle identifier is not in header
+
         //TODO: don't try to update if identifier is index
         targetIndex = getIndexOfElement(targetIdentifier, header);
+        validateIdentifier(targetIdentifier, targetIndex, header);
         xIndex = getIndexOfElement(xIdentifier, header);
+        validateIdentifier(xIdentifier, xIndex, header);
         yIndex = getIndexOfElement(yIdentifier, header);
+        validateIdentifier(yIdentifier, yIndex, header);
     }
 
     private int getIndexOfElement(String element, String[] a){
@@ -76,6 +79,15 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
                 return index;
             }
         }
+
         return -1;
+    }
+
+    private void validateIdentifier(String identifier, int identifierIndex, String[] header){
+        if(identifierIndex == -1)
+        {
+            String message = String.format("Identifier '%s' is invalid. Valid identifiers: %s", identifier, String.join(", ", header));
+            throw new IllegalArgumentException(message);
+        }
     }
 }
