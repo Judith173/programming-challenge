@@ -2,20 +2,16 @@ package de.exxcellent.challenge;
 
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * The entry class for your solution. This class is only aimed as starting point and not intended as baseline for your software
- * design. Read: create your own classes and packages as appropriate.
- *
- * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
+ * Main class to run Football or Weather by using ars.
  */
 public final class App {
 
     /**
-     * This is the main entry method of your program.
-     * @param args The CLI arguments passed
+     * Run class Weather or Football with data from csv-file
+     * @param args <--weather|--football> <myFile.csv>
      */
     public static void main(String... args) {
         List<String> validArgs = List.of("--weather", "--football");
