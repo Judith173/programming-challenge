@@ -30,8 +30,11 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     @Override
     protected List<String[]> getData() throws IOException {
         List<String[]> content =  CSVReader.getFileContent(fileName);
-        //TODO handle empty list
-        //TODO handdle CSV without header
+        //TODO handle CSV without header
+        if (content.isEmpty())
+        {
+            return content;
+        }
         String[] header = content.get(0);
         updateIndexes(header);
         content.remove(0);
