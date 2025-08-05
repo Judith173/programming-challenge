@@ -56,9 +56,50 @@ public class FootballTest {
         }
     }
 
+    @Test
+    public void findTeamWithSmallestGoalDifference_nullFile()
+    {
+        runTestWithIllegalArgument(null, targetIdentifier, xIdentifier, yIdentifier);
+    }
+
+    @Test
+    public void findTeamWithSmallestGoalDifference_nullTarget()
+    {
+        runTestWithIllegalArgument(fileName, null, xIdentifier, yIdentifier);
+    }
+
+    @Test
+    public void findTeamWithSmallestGoalDifference_nullXIdentifier()
+    {
+        runTestWithIllegalArgument(fileName, targetIdentifier, null, yIdentifier);
+    }
+
+    @Test
+    public void findTeamWithSmallestGoalDifference_nullYIdentifier()
+    {
+        runTestWithIllegalArgument(fileName, targetIdentifier, xIdentifier, null);
+    }
+
     private void evaluateResult(List<String> result)
     {
         assertEquals(expectedNbrOfTeams, result.size());
         assertEquals(expectedTeam, result.get(0));
+    }
+
+    private void runTestWithIllegalArgument(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
+    {
+        try {
+            Football football = new Football(fileName, targetIdentifier, xIdentifier, yIdentifier);
+            football.findTeamWithSmallestGoalDifference();
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
     }
 }
