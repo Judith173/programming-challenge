@@ -73,7 +73,6 @@ public class CSVMinDistTargetsFinderTest {
     }
 
 
-
     @Test
     public void findTargetsWithMinDist_multipleMinDistances(){
         String[] expected = {"a", "b", "c"};
@@ -137,8 +136,6 @@ public class CSVMinDistTargetsFinderTest {
     }
 
 
-
-
     private void runTest(String file, int expectedLength, String expectedResult)
     {
         List<String> results = getResults(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
@@ -172,7 +169,4 @@ public class CSVMinDistTargetsFinderTest {
             System.out.println(e.getMessage());
         }
     }
-
-
-
 }
