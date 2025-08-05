@@ -13,6 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class CSVMinDistTargetsFinderTest {
 
     private final String dirName = "min-dist-finder-test-files/";
+    private final String sharedDirName = "shared-test-files/";
     private final String defaultFile = "default-csv.csv";
     private final String defaultTargetCol = "c1";
     private final String defaultXIdentifier = "c2";
@@ -161,6 +162,21 @@ public class CSVMinDistTargetsFinderTest {
             List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
             assertEquals(1, actual_results.size());
             assertEquals("a", actual_results.get(0));
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    public void findTargetsWithMinDist_onlyHeaderCSV(){
+        try {
+            String file = sharedDirName + "only-header-csv.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
+            assertEquals(0, actual_results.size());
         }
         catch (IOException e)
         {
