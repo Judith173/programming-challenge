@@ -1,6 +1,6 @@
 package de.exxcellent.challenge;
 
-import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
+import de.exxcellent.challenge.service.MinDistTargetsFinderForTable;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -21,7 +21,7 @@ public class FootballTest {
     @Test
     public void findTargetsWithMinDist_football(){
         try{
-            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(fileName, targetIdentifier, xIdentifier, yIdentifier);
+            MinDistTargetsFinderForTable targetsFinder = new MinDistTargetsFinderForTable(fileName, targetIdentifier, xIdentifier, yIdentifier);
             List<String> teamsWithSmallestGoalDiff = targetsFinder.findTargetsWithMinDistance();
             evaluateResult(teamsWithSmallestGoalDiff);
         }

@@ -1,6 +1,6 @@
 package de.exxcellent.challenge;
 
-import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
+import de.exxcellent.challenge.service.MinDistTargetsFinderForTable;
 
 import java.io.IOException;
 import java.util.List;
@@ -48,7 +48,7 @@ public class Weather {
      */
     public List<String> findDaysWithMinTempSpread() throws IOException
     {
-        CSVMinDistTargetsFinder daysFinder = new CSVMinDistTargetsFinder(csvFileName, dayCol, maxTempCol, minTempCol);
+        MinDistTargetsFinderForTable daysFinder = new MinDistTargetsFinderForTable(csvFileName, dayCol, maxTempCol, minTempCol);
         return daysFinder.findTargetsWithMinDistance();
     }
 

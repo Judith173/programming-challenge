@@ -1,6 +1,6 @@
 package de.exxcellent.challenge;
 
-import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
+import de.exxcellent.challenge.service.MinDistTargetsFinderForTable;
 
 import java.io.IOException;
 import java.util.List;
@@ -47,7 +47,7 @@ public class Football {
      * @throws IOException if an error occurs while reading the file or extracting relevant information from it
      */
     public List<String> findTeamWithSmallestGoalDifference() throws IOException {
-        CSVMinDistTargetsFinder teamsFinder = new CSVMinDistTargetsFinder(csvFileName, teamCol, goalsCol, goalsAllowedCol);
+        MinDistTargetsFinderForTable teamsFinder = new MinDistTargetsFinderForTable(csvFileName, teamCol, goalsCol, goalsAllowedCol);
         return teamsFinder.findTargetsWithMinDistance();
     }
 

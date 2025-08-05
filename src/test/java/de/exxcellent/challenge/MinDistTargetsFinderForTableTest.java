@@ -1,5 +1,5 @@
 package de.exxcellent.challenge;
-import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
+import de.exxcellent.challenge.service.MinDistTargetsFinderForTable;
 import de.exxcellent.challenge.exception.InvalidCSVFormatException;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 /**
  * Junit 5 tests for testing the CSVMinDistTargetsFinder class
  */
-public class CSVMinDistTargetsFinderTest {
+public class MinDistTargetsFinderForTableTest {
 
     private final String dirName = "min-dist-finder-test-files/";
     private final String sharedDirName = "shared-test-files/";
@@ -177,7 +177,7 @@ public class CSVMinDistTargetsFinderTest {
 
     private List<String> getResults(String file, String targetId, String xId, String yID){
         try {
-            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, targetId, xId, yID);
+            MinDistTargetsFinderForTable targetsFinder = new MinDistTargetsFinderForTable(file, targetId, xId, yID);
             return targetsFinder.findTargetsWithMinDistance();
         }
         catch (IOException e)
@@ -203,7 +203,7 @@ public class CSVMinDistTargetsFinderTest {
     private void runTestWithInvalidCSVFormat(String file)
     {
         try {
-            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            MinDistTargetsFinderForTable targetsFinder = new MinDistTargetsFinderForTable(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
             targetsFinder.findTargetsWithMinDistance();
             fail();
         }

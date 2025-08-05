@@ -6,9 +6,9 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Identifies the target(s) with the minimum distance between their x- and y-value by using data read from a csv-file
+ * Identifies the target(s) with the minimum distance between their x- and y-value by using tabular data
  */
-public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
+public class MinDistTargetsFinderForTable extends MinDistTargetsFinder<String[]>
 {
     private final String fileName;
     private final String targetIdentifier;
@@ -20,12 +20,12 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
 
     /**
      *
-     * @param fileName csv-file name
+     * @param fileName name of file containing tabular data
      * @param targetIdentifier column header of target column
      * @param xIdentifier column header of x-value-column
      * @param yIdentifier column header of y-value-column
      */
-    public CSVMinDistTargetsFinder(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
+    public MinDistTargetsFinderForTable(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
     {
         this.fileName = fileName;
         this.targetIdentifier = targetIdentifier;
@@ -38,8 +38,8 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
 
     /**
-     * Reads a csv-file, validates it and returns its content (excluding the header)
-     * @return Content of csv-file (excluding header) as two-dimensional list
+     * Reads a file with tabular data, validates it and returns its content (excluding the header)
+     * @return Table content (excluding header) as two-dimensional list
      * @throws IOException if an error occurs while reading or validating the csv file
      *      (for example if not all values of an x- or y-column are numeric)
      */
@@ -61,8 +61,8 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
 
     /**
-     * Extracts the x-value from a specific row in the csv
-     * @param row of csv-file (represented by an array)
+     * Extracts the x-value from a specific row in table
+     * @param row of table (represented by an array)
      * @return x-value
      */
     @Override
@@ -72,8 +72,8 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
 
     /**
-     * Extracts the y-value from a specific row in the csv
-     * @param row of csv-file (represented by an array)
+     * Extracts the y-value from a specific row in the table
+     * @param row of table (represented by an array)
      * @return y-value
      */
     @Override
@@ -83,8 +83,8 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
 
     /**
-     * Extracts the target from a specific row in the csv
-     * @param row of csv-file (represented by an array)
+     * Extracts the target from a specific row in the table
+     * @param row of table (represented by an array)
      * @return target
      */
     @Override
