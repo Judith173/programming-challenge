@@ -27,7 +27,10 @@ public class CSVReader {
             try (BufferedReader br = new BufferedReader(new InputStreamReader(is))) {
                 String row;
                 while ((row = br.readLine()) != null) {
-                    rows.add(row.split(","));
+                    if (!row.trim().isEmpty())
+                    {
+                        rows.add(row.split(","));
+                    }
                 }
             }
 
