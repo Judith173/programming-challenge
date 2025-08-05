@@ -10,7 +10,6 @@ public abstract class MinDistTargetsFinder<T> {
         List<String> targetsWithMinDist = new ArrayList<>();
         double minDist = Double.POSITIVE_INFINITY;
 
-        //TODO: handle empty data
         List<T> data = getData();
         for (T element : data) {
             double dist = getDistance(element);

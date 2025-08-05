@@ -141,6 +141,12 @@ public class CSVMinDistTargetsFinderTest {
         runTestWithIllegalArgument(defaultFile, defaultTargetCol, defaultXIdentifier, null);
     }
 
+    @Test
+    public void findTargetsWithMinDist_valueCannotBeConvertedToNumber(){
+        String file = dirName + "value-in-col-not-numeric.csv";
+        runTestWithInvalidCSVFormat(file);
+    }
+
 
     private void runTest(String file, int expectedLength, String expectedResult)
     {
@@ -173,6 +179,24 @@ public class CSVMinDistTargetsFinderTest {
         catch (IllegalArgumentException e)
         {
             System.out.println(e.getMessage());
+        }
+    }
+
+    private void runTestWithInvalidCSVFormat(String file)
+    {
+        try {
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            targetsFinder.findTargetsWithMinDistance();
+            fail();
+        }
+        catch (InvalidCSVFormatException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
         }
     }
 }

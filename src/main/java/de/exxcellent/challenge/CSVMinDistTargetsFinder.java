@@ -27,7 +27,7 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
 
 
     @Override
-    protected List<String[]> getData() throws IOException {
+    protected List<String[]> getData() throws IOException, InvalidCSVFormatException {
         List<String[]> content =  CSVReader.getFileContent(fileName);
         if (content.isEmpty())
         {
@@ -36,6 +36,7 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
         String[] header = content.get(0);
         updateIndexes(header);
         content.remove(0);
+        validateData(content, header);
 
         return content;
 
@@ -60,14 +61,9 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
 
     private void updateIndexes(String[] header){
-
-        //TODO: don't try to update if identifier is index
         targetIndex = getIndexOfElement(targetIdentifier, header);
-        validateIdentifier(targetIdentifier, targetIndex, header);
         xIndex = getIndexOfElement(xIdentifier, header);
-        validateIdentifier(xIdentifier, xIndex, header);
         yIndex = getIndexOfElement(yIdentifier, header);
-        validateIdentifier(yIdentifier, yIndex, header);
     }
 
     private int getIndexOfElement(String element, String[] a){
@@ -77,7 +73,6 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
                 return index;
             }
         }
-
         return -1;
     }
 
@@ -88,4 +83,29 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
             throw new IllegalArgumentException(message);
         }
     }
+
+    private void validateData(List<String[]> dataWithoutHeader, String[] header) throws InvalidCSVFormatException
+    {
+        validateIdentifier(targetIdentifier, targetIndex, header);
+        validateIdentifier(xIdentifier, xIndex, header);
+        validateIdentifier(yIdentifier, yIndex, header);
+
+        for (String[] row : dataWithoutHeader){
+            validateValue(row[xIndex], xIdentifier, row);
+            validateValue(row[yIndex], yIdentifier, row);
+        }
+    }
+
+    private void validateValue(String value, String colName, String[] row) throws InvalidCSVFormatException{
+        try {
+            Double.parseDouble(value);
+        }
+        catch (NumberFormatException e)
+        {
+            String message = String.format("Error: To compute the minimum distance each value of column '%s' must be " +
+                    "numeric. Invalid value '%s' in line '%s'.", colName, value, String.join(", ", row));
+            throw new InvalidCSVFormatException(message);
+        }
+    }
+
 }
