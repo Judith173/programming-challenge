@@ -20,7 +20,8 @@ public final class App {
     public static void main(String... args) {
         List<String> validArgs = List.of("--weather", "--football");
         if (args.length != 2 || !validArgs.contains(args[0])){
-            System.err.printf("Two arguments expected: <'%s'|'%s'> <'csv-file-name'>", validArgs.get(0), validArgs.get(1));
+            System.err.printf("Error: Two arguments expected: <'%s'|'%s'> <'csv-file-name'>", validArgs.get(0), validArgs.get(1));
+            System.err.println("\nIf you try to execute this with Maven try: mvn exec:java -Dexec.args=\"argument1 argument2\"");
             System.exit(1);
         }
 
