@@ -35,7 +35,7 @@ public class CSVReaderTest {
     }
 
     @Test
-    void transformCSVToArrayTest_emptyCSV() {
+    void getFileContentTest_emptyCSV() {
         try{
             List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/empty-csv.csv");
             assertEquals(0, actual.size());
@@ -47,12 +47,31 @@ public class CSVReaderTest {
     }
 
     @Test
-    void transformCSVToArrayTest_onlyHeaderCSV() {
+    void getFileContentTest_onlyHeaderCSV() {
         try{
             String[][] expected ={{"c1", "c2", "c3"}};
             List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/only-header-csv.csv");
             assertEquals(1, actual.size());
             assertArrayEquals(expected[0], actual.get(0));
+        }
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    void getFileContentTest_csvWithEmptyLines() {
+        try{
+            String[][] expected ={{"c1", "c2", "c3"},{"a","1","5"},{"b", "1", "2"}, {"c", "5", "1"}};
+;
+            List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/empty-lines.csv");
+            assertEquals(expected.length, actual.size());
+
+            for (int i = 0; i < expected.length; i++)
+            {
+                assertArrayEquals(expected[i], actual.get(i));
+            }
         }
         catch (IOException e){
             System.err.println(e.getMessage());
