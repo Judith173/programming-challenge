@@ -3,7 +3,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -13,11 +12,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
 public class CSVReaderTest {
+
+    private final String directory_name = "csv-reader-test-files";
+    private final String shared_directory_name = "shared-test-files";
+
     @Test
     void getFileContentTest() {
         try{
             String[][] expected ={{"col1", "col2"},{"1", "2"},{"3", "4"}, {"5", "6"}};
-            List<String[]> actual = CSVReader.getFileContent("simpleTestCSV.csv");
+            List<String[]> actual = CSVReader.getFileContent(directory_name + "/simpleTestCSV.csv");
 
             assertEquals(expected.length, actual.size());
             for (int i = 0; i < expected.length; i++)
@@ -34,7 +37,7 @@ public class CSVReaderTest {
     @Test
     void transformCSVToArrayTest_emptyCSV() {
         try{
-            List<String[]> actual = CSVReader.getFileContent("emptyCSV.csv");
+            List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/emptyCSV.csv");
             assertEquals(0, actual.size());
         }
         catch (IOException e){
@@ -47,7 +50,7 @@ public class CSVReaderTest {
     void transformCSVToArrayTest_onlyHeaderCSV() {
         try{
             String[][] expected ={{"c1", "c2"}};
-            List<String[]> actual = CSVReader.getFileContent("onlyHeaderCSV.csv");
+            List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/onlyHeaderCSV.csv");
             assertEquals(1, actual.size());
             assertArrayEquals(expected[0], actual.get(0));
         }
@@ -60,7 +63,7 @@ public class CSVReaderTest {
     @Test
     void getFileContentTest_nullFile() {
         try{
-            List<String[]> actual = CSVReader.getFileContent(null);
+            CSVReader.getFileContent(null);
             fail();
         }
         catch (IllegalArgumentException e)
