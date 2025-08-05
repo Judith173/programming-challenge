@@ -15,7 +15,6 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
 
     public CSVMinDistTargetsFinder(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
     {
-        //TODO: handle index instead of col_name as identifier
         this.fileName = fileName;
         this.targetIdentifier = targetIdentifier;
         this.xIdentifier = xIdentifier;
@@ -30,7 +29,6 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     @Override
     protected List<String[]> getData() throws IOException {
         List<String[]> content =  CSVReader.getFileContent(fileName);
-        //TODO handle CSV without header
         if (content.isEmpty())
         {
             return content;
@@ -44,20 +42,20 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
     @Override
     protected double getX(String[] row){
-        //TODO: handle index is -1
         //TODO: handle parseDouble fail
+        assert (xIndex >= 0 && xIndex < row.length);
         return Double.parseDouble(row[xIndex]);
     }
 
     @Override
     protected double getY(String[] row){
-        //TODO: handle index is -1
         //TODO: handle parseDouble fail
+        assert (yIndex >=0 && yIndex < row.length);
         return Double.parseDouble(row[yIndex]);
     }
     @Override
     protected String getTarget(String[] row){
-        //TODO: handle index is -1
+        assert (targetIndex >=0 && targetIndex < row.length);
         return row[targetIndex];
     }
 
