@@ -103,7 +103,7 @@ public class CSVMinDistTargetsFinderTest {
     @Test
     public void findTargetsWithMinDist_csvWithoutHeader(){
         String file = dirName + "csv-without-header.csv";
-        runTest(file, 0, null);
+        runTestWithIllegalArgument(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
     }
 
     @Test
