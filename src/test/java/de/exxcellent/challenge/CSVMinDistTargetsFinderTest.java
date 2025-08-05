@@ -61,10 +61,18 @@ public class CSVMinDistTargetsFinderTest {
     }
 
     @Test
-    public void findTargetsWithMinDist_minDistIsZero(){
+    public void findTargetsWithMinDist_minDistIsZero() {
         String file = dirName + "min-dist-is-zero.csv";
         runTest(file, 1, "b");
     }
+
+    @Test
+    public void findTargetsWithMinDist_minDistInFloatingPointNumbers() {
+        String file = dirName + "double-values.csv";
+        runTest(file, 1, "b");
+    }
+
+
 
     @Test
     public void findTargetsWithMinDist_multipleMinDistances(){
@@ -107,6 +115,28 @@ public class CSVMinDistTargetsFinderTest {
     public void findTargetsWithMinDist_incorrectYIdentifier(){
         runTestWithIllegalArgument(defaultFile, defaultTargetCol, defaultXIdentifier, "thisColDoesNotExist");
     }
+
+    @Test
+    public void findTargetsWithMinDist_fileIsNull(){
+        runTestWithIllegalArgument(null, defaultTargetCol, defaultXIdentifier, "thisColDoesNotExist");
+    }
+
+    @Test
+    public void findTargetsWithMinDist_targetColIsNull(){
+        runTestWithIllegalArgument(defaultFile, null, defaultXIdentifier, "thisColDoesNotExist");
+    }
+
+    @Test
+    public void findTargetsWithMinDist_xColIsNull(){
+        runTestWithIllegalArgument(defaultFile, defaultTargetCol, null, "thisColDoesNotExist");
+    }
+
+    @Test
+    public void findTargetsWithMinDist_yColIsNull(){
+        runTestWithIllegalArgument(defaultFile, defaultTargetCol, defaultXIdentifier, null);
+    }
+
+
 
 
     private void runTest(String file, int expectedLength, String expectedResult)
