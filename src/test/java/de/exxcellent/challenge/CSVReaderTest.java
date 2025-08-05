@@ -49,7 +49,7 @@ public class CSVReaderTest {
     @Test
     void transformCSVToArrayTest_onlyHeaderCSV() {
         try{
-            String[][] expected ={{"c1", "c2"}};
+            String[][] expected ={{"c1", "c2", "c3"}};
             List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/only-header-csv.csv");
             assertEquals(1, actual.size());
             assertArrayEquals(expected[0], actual.get(0));

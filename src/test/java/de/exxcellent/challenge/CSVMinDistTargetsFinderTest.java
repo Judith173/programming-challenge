@@ -185,6 +185,21 @@ public class CSVMinDistTargetsFinderTest {
         }
     }
 
+    @Test
+    public void findTargetsWithMinDist_emptyCSV(){
+        try {
+            String file = sharedDirName + "empty-csv.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
+            assertEquals(0, actual_results.size());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
 
 
 }
