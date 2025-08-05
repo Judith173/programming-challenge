@@ -45,7 +45,8 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
      */
     @Override
     protected List<String[]> getData() throws IOException {
-        List<String[]> content =  CSVReader.getFileContent(fileName);
+        TableReader reader = new CSVReader(fileName);
+        List<String[]> content =  reader.readContent();
         if (content.isEmpty())
         {
             return content;

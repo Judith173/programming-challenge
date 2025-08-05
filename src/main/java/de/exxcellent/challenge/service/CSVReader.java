@@ -13,14 +13,22 @@ import java.util.List;
 /**
  * Reads a CSV-file and returns its content as two-dimensional list.
  */
-public class CSVReader {
+public class CSVReader implements TableReader{
+
+    private String file;
+
+    public CSVReader(String csvFileName)
+    {
+        this.file = csvFileName;
+    }
     /**
      * Reads CSV-file. Skips empty lines.
      * @param file name of CSV-file
      * @return content of file as two-dimensional list
      * @throws IOException if errors occur while reading the file or the file does not have the required format
      */
-    public static List<String[]> getFileContent(String file) throws IOException {
+    @Override
+    public List<String[]> readContent() throws IOException {
 
         if (file == null || file.trim().isEmpty()) {
             throw new IllegalArgumentException("Filename must not be null or empty.");
@@ -55,7 +63,7 @@ public class CSVReader {
 
 
     }
-    private static void validateNbrElements(String[] cols, int expectedNbrElements) throws InvalidCSVFormatException
+    private void validateNbrElements(String[] cols, int expectedNbrElements) throws InvalidCSVFormatException
     {
 
         if (cols.length != expectedNbrElements)
