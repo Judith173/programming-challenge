@@ -57,10 +57,51 @@ public class WeatherTest {
         }
     }
 
+    @Test
+    public void findDaysWithMinTempSpread_nullFile()
+    {
+        runTestWithIllegalArgument(null, targetIdentifier, xIdentifier, yIdentifier);
+    }
+
+    @Test
+    public void findDaysWithMinTempSpread_nullTarget()
+    {
+        runTestWithIllegalArgument(fileName, null, xIdentifier, yIdentifier);
+    }
+
+    @Test
+    public void findDaysWithMinTempSpread_nullXIdentifier()
+    {
+        runTestWithIllegalArgument(fileName, targetIdentifier, null, yIdentifier);
+    }
+
+    @Test
+    public void findDaysWithMinTempSpread_nullYIdentifier()
+    {
+        runTestWithIllegalArgument(fileName, targetIdentifier, xIdentifier, null);
+    }
+
     private void evaluateResult(List<String> result)
     {
         assertEquals(expectedNbrOfDays, result.size());
         assertEquals(expectedDay, result.get(0));
+    }
+
+    private void runTestWithIllegalArgument(String fileName, String targetIdentifier, String xIdentifier, String yIdentifier)
+    {
+        try {
+            Football football = new Football(fileName, targetIdentifier, xIdentifier, yIdentifier);
+            football.findTeamWithSmallestGoalDifference();
+        }
+        catch (IllegalArgumentException e)
+        {
+            System.out.println(e.getMessage());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
     }
 
 }
