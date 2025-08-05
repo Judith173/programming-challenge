@@ -27,7 +27,7 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
 
 
     @Override
-    protected List<String[]> getData() throws IOException, InvalidCSVFormatException {
+    protected List<String[]> getData() throws IOException {
         List<String[]> content =  CSVReader.getFileContent(fileName);
         if (content.isEmpty())
         {
@@ -43,14 +43,12 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
     }
     @Override
     protected double getX(String[] row){
-        //TODO: handle parseDouble fail
         assert (xIndex >= 0 && xIndex < row.length);
         return Double.parseDouble(row[xIndex]);
     }
 
     @Override
     protected double getY(String[] row){
-        //TODO: handle parseDouble fail
         assert (yIndex >=0 && yIndex < row.length);
         return Double.parseDouble(row[yIndex]);
     }
