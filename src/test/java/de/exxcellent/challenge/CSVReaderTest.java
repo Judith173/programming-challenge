@@ -13,121 +13,55 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CSVReaderTest {
 
-    private final String directory_name = "csv-reader-test-files";
-    private final String shared_directory_name = "shared-test-files";
+    private final String directory_name = "csv-reader-test-files/";
+    private final String shared_directory_name = "shared-test-files/";
 
     @Test
     void getFileContentTest() {
-        try{
-            String[][] expected ={{"col1", "col2"},{"1", "2"},{"3", "4"}, {"5", "6"}};
-            List<String[]> actual = CSVReader.getFileContent(directory_name + "/simple-test-csv.csv");
+        String file = directory_name + "simple-test-csv.csv";
+        String[][] expected ={{"col1", "col2"},{"1", "2"},{"3", "4"}, {"5", "6"}};
 
-            assertEquals(expected.length, actual.size());
-            for (int i = 0; i < expected.length; i++)
-            {
-                assertArrayEquals(expected[i], actual.get(i));
-            }
-        }
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+        runTest(file, expected);
+
     }
+
 
     @Test
     void getFileContentTest_emptyCSV() {
-        try{
-            List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/empty-csv.csv");
-            assertEquals(0, actual.size());
-        }
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+        String file = shared_directory_name + "empty-csv.csv";
+        String[][] expected ={};
+
+        runTest(file, expected);
     }
 
     @Test
     void getFileContentTest_onlyHeaderCSV() {
-        try{
-            String[][] expected ={{"c1", "c2", "c3"}};
-            List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/only-header-csv.csv");
-            assertEquals(1, actual.size());
-            assertArrayEquals(expected[0], actual.get(0));
-        }
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+        String file = shared_directory_name + "only-header-csv.csv";
+        String[][] expected ={{"c1", "c2", "c3"}};
+
+        runTest(file, expected);
     }
 
     @Test
     void getFileContentTest_csvWithEmptyLines() {
-        try{
-            String[][] expected ={{"c1", "c2", "c3"},{"a","1","5"},{"b", "1", "2"}, {"c", "5", "1"}};
-;
-            List<String[]> actual = CSVReader.getFileContent(shared_directory_name + "/empty-lines.csv");
-            assertEquals(expected.length, actual.size());
-
-            for (int i = 0; i < expected.length; i++)
-            {
-                assertArrayEquals(expected[i], actual.get(i));
-            }
-        }
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+        String file = shared_directory_name + "empty-lines.csv";
+        String[][] expected ={{"c1", "c2", "c3"},{"a","1","5"},{"b", "1", "2"}, {"c", "5", "1"}};
+        runTest(file, expected);
     }
 
     @Test
     void getFileContentTest_nullFile() {
-        try{
-            CSVReader.getFileContent(null);
-            fail();
-        }
-        catch (IllegalArgumentException e)
-        {
-            assertTrue(true);
-        }
-
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+       runTestWithIllegalArgument(null);
     }
 
     @Test
     void getFileContentTest_emptyFileName() {
-        try{
-            CSVReader.getFileContent("");
-            fail();
-        }
-        catch (IllegalArgumentException e)
-        {
-            assertTrue(true);
-        }
-
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+        runTestWithIllegalArgument("");
     }
 
     @Test
     void getFileContentTest_whitespaceFileName() {
-        try{
-            CSVReader.getFileContent("   ");
-            fail();
-        }
-        catch (IllegalArgumentException e)
-        {
-            assertTrue(true);
-        }
-
-        catch (IOException e){
-            System.err.println(e.getMessage());
-            fail();
-        }
+        runTestWithIllegalArgument("   ");
     }
 
     @Test
@@ -137,6 +71,38 @@ public class CSVReaderTest {
             fail();
         }
         catch (FileNotFoundException e)
+        {
+            assertTrue(true);
+        }
+
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    private void runTest(String file, String[][] expected){
+        try {
+            List<String[]> actual = CSVReader.getFileContent(file);
+            assertEquals(expected.length, actual.size());
+            for (int i = 0; i < expected.length; i++)
+            {
+                assertArrayEquals(expected[i], actual.get(i));
+            }
+
+        }
+        catch (IOException e){
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    void runTestWithIllegalArgument(String file) {
+        try{
+            CSVReader.getFileContent(file);
+            fail();
+        }
+        catch (IllegalArgumentException e)
         {
             assertTrue(true);
         }

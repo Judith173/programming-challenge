@@ -105,7 +105,7 @@ public class CSVMinDistTargetsFinderTest {
         String file = sharedDirName + "empty-lines.csv";
         runTest(file, 1, "b");
     }
-    
+
     @Test
     public void findTargetsWithMinDist_csvWithoutHeader(){
         String file = dirName + "csv-without-header.csv";
