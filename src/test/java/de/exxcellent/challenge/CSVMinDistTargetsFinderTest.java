@@ -119,6 +119,23 @@ public class CSVMinDistTargetsFinderTest {
         }
     }
 
+    @Test
+    public void findTargetsWithMinDist_multipleMinDistances(){
+        try {
+            String[] expected = {"a", "b", "c"};
+            String file = dirName + "multiple-min-distances.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
+            assertEquals(expected.length, actual_results.size());
+            assertArrayEquals(expected, actual_results.toArray());
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
 
 
 }
