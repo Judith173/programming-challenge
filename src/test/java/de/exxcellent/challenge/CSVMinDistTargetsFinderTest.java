@@ -101,6 +101,12 @@ public class CSVMinDistTargetsFinderTest {
     }
 
     @Test
+    public void findTargetsWithMinDist_csvWithoutHeader(){
+        String file = dirName + "csv-without-header.csv";
+        runTest(file, 0, null);
+    }
+
+    @Test
     public void findTargetsWithMinDist_incorrectTargetCol(){
         runTestWithIllegalArgument(defaultFile, "thisColDoesNotExist", defaultXIdentifier, defaultYIdentifier);
     }
