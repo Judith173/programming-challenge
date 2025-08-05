@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * Main class to run Football or Weather by using ars.
+ * Main class to run Football or Weather by using args.
  */
 public final class App {
 
