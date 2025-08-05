@@ -10,6 +10,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Junit 5 tests for testing the CSVMinDistTargetsFinder class
+ */
 public class CSVMinDistTargetsFinderTest {
 
     private final String dirName = "min-dist-finder-test-files/";

@@ -8,6 +8,9 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
+/**
+ * Junit 5 Tests for testing the Weather class
+ */
 public class WeatherTest {
 
     private final String fileName = "weather.csv";

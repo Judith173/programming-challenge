@@ -11,7 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
+/**
+ * Junit 5 tests for testing the CSVReader class
+ */
 public class CSVReaderTest {
 
     private final String directory_name = "csv-reader-test-files/";
@@ -23,7 +25,6 @@ public class CSVReaderTest {
         String[][] expected ={{"col1", "col2"},{"1", "2"},{"3", "4"}, {"5", "6"}};
 
         runTest(file, expected);
-
     }
 
 

@@ -3,8 +3,7 @@ package de.exxcellent.challenge;
 import org.junit.jupiter.api.Test;
 
 /**
- * Example JUnit 5 test case.
- * @author Benjamin Schmid <benjamin.schmid@exxcellent.de>
+ * JUnit 5 tests for testing the main App.
  */
 class AppTest {
 
