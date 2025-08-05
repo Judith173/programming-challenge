@@ -18,9 +18,6 @@ public class FootballTest {
     private final String xIdentifier = "Goals";
     private final String yIdentifier = "Goals Allowed";
 
-    private final int expectedNbrOfTeams = 1;
-    private final String expectedTeam = "Aston_Villa";
-
     @Test
     public void findTargetsWithMinDist_football(){
         try{
@@ -86,6 +83,8 @@ public class FootballTest {
 
     private void evaluateResult(List<String> result)
     {
+        int expectedNbrOfTeams = 1;
+        String expectedTeam = "Aston_Villa";
         assertEquals(expectedNbrOfTeams, result.size());
         assertEquals(expectedTeam, result.get(0));
     }

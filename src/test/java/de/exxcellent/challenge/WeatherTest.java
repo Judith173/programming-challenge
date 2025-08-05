@@ -18,8 +18,6 @@ public class WeatherTest {
     private final String xIdentifier = "MxT";
     private final String yIdentifier = "MnT";
 
-    private final int expectedNbrOfDays = 1;
-    private final String expectedDay = "14";
 
     @Test
     public void findTargetsWithMinDist_weather(){
@@ -86,6 +84,8 @@ public class WeatherTest {
 
     private void evaluateResult(List<String> result)
     {
+        int expectedNbrOfDays = 1;
+        String expectedDay = "14";
         assertEquals(expectedNbrOfDays, result.size());
         assertEquals(expectedDay, result.get(0));
     }
