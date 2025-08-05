@@ -89,8 +89,20 @@ public class CSVMinDistTargetsFinder extends MinDistTargetsFinder<String[]>
         validateIdentifier(yIdentifier, yIndex, header);
 
         for (String[] row : dataWithoutHeader){
+            validateNbrElements(row, header.length);
             validateValue(row[xIndex], xIdentifier, row);
             validateValue(row[yIndex], yIdentifier, row);
+        }
+    }
+
+    private void validateNbrElements(String[] row, int expectedNbrElements) throws InvalidCSVFormatException
+    {
+
+        if (row.length != expectedNbrElements)
+        {
+            String message = String.format("Error: Invalid number of elements in line '%s': Expected: %d, Actual: %d",
+                    String.join(", ", row), expectedNbrElements, row.length);
+            throw new InvalidCSVFormatException(message);
         }
     }
 
