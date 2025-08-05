@@ -69,6 +69,56 @@ public class CSVMinDistTargetsFinderTest {
         }
     }
 
+    @Test
+    public void findTargetsWithMinDist_minDistInFirstRow(){
+        try {
+            String file = dirName + "min-dist-first-row.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> results = targetsFinder.findTargetsWithMinDistance();
+
+            assertEquals(1, results.size());
+            assertEquals("a", results.get(0));
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    public void findTargetsWithMinDist_minDistInLastRow(){
+        try {
+            String file = dirName + "min-dist-last-row.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> results = targetsFinder.findTargetsWithMinDistance();
+
+            assertEquals(1, results.size());
+            assertEquals("c", results.get(0));
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
+    @Test
+    public void findTargetsWithMinDist_minDistIsZero(){
+        try {
+            String file = dirName + "min-dist-is-zero.csv";
+            CSVMinDistTargetsFinder targetsFinder = new CSVMinDistTargetsFinder(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
+            List<String> actual_results = targetsFinder.findTargetsWithMinDistance();
+            assertEquals(1, actual_results.size());
+            assertEquals("b", actual_results.get(0));
+        }
+        catch (IOException e)
+        {
+            System.err.println(e.getMessage());
+            fail();
+        }
+    }
+
 
 
 }
