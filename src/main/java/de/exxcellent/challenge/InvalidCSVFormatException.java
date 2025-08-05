@@ -7,6 +7,5 @@ public class InvalidCSVFormatException extends IOException{
     {
         super(message);
     }
-
 }
 

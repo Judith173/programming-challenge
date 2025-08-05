@@ -147,6 +147,12 @@ public class CSVMinDistTargetsFinderTest {
         runTestWithInvalidCSVFormat(file);
     }
 
+    @Test
+    public void findTargetsWithMinDist_missingValue(){
+        String file = dirName + "csv-with-missing-value.csv";
+        runTestWithInvalidCSVFormat(file);
+    }
+
 
     private void runTest(String file, int expectedLength, String expectedResult)
     {
