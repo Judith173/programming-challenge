@@ -93,6 +93,11 @@ public class CSVMinDistTargetsFinderTest {
         runTest(file, 0, null);
     }
 
+    @Test
+    public void findTargetsWithMinDist_incorrectTargetCol(){
+        List<String> results = getResults(defaultFile, "thisColDoesNotExist", defaultXIdentifier, defaultYIdentifier);
+    }
+
     private void runTest(String file, int expectedLength, String expectedResult)
     {
         List<String> results = getResults(file, defaultTargetCol, defaultXIdentifier, defaultYIdentifier);
@@ -100,7 +105,6 @@ public class CSVMinDistTargetsFinderTest {
         if (expectedLength == 1){
             assertEquals(expectedResult, results.get(0));
         }
-
     }
 
     private List<String> getResults(String file, String targetId, String xId, String yID){
