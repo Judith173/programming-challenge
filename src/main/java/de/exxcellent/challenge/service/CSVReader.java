@@ -8,8 +8,16 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Reads a CSV-file and returns its content as two-dimensional list.
+ */
 public class CSVReader {
+    /**
+     * Reads CSV-file. Skips empty lines.
+     * @param file name of CSV-file
+     * @return content of file as two-dimensional list
+     * @throws IOException if there are errors while reading the file
+     */
     public static List<String[]> getFileContent(String file) throws IOException {
 
         if (file == null || file.trim().isEmpty()) {
