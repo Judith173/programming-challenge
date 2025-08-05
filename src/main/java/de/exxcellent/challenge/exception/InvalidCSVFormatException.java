@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.exception;
 
 import java.io.IOException;
 

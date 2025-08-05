@@ -1,4 +1,6 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.service;
+
+import de.exxcellent.challenge.exception.InvalidCSVFormatException;
 
 import java.io.IOException;
 import java.util.List;

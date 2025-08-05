@@ -1,4 +1,6 @@
 package de.exxcellent.challenge;
+import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
+import de.exxcellent.challenge.exception.InvalidCSVFormatException;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

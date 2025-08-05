@@ -1,5 +1,6 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;

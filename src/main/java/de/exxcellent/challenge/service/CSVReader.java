@@ -1,4 +1,4 @@
-package de.exxcellent.challenge;
+package de.exxcellent.challenge.service;
 
 import java.io.IOException;
 import java.io.BufferedReader;
@@ -18,7 +18,7 @@ public class CSVReader {
 
         List<String[]> rows = new ArrayList<>();
 
-        try (InputStream is = CSVReader.class.getResourceAsStream(file)) {
+        try (InputStream is = CSVReader.class.getResourceAsStream("../" + file)) {
             if (is == null) {
                 String message = String.format("File %s not found in %s", file, CSVReader.class.getResource(""));
                 throw new FileNotFoundException(message);

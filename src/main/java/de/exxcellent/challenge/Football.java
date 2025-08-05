@@ -1,5 +1,7 @@
 package de.exxcellent.challenge;
 
+import de.exxcellent.challenge.service.CSVMinDistTargetsFinder;
+
 import java.io.IOException;
 import java.util.List;
 
